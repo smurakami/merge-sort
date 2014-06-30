@@ -66,31 +66,28 @@ void merge(int * array, int size){
 int depth;
 
 void merge_sort(int * array, int size){
-  depth++;
-  printSpaces((depth - 1) * 2);
+  printSpaces((depth) * 2);
   printf("in: ");
   for (int i = 0; i < size; i++) {
     printf("%d, ", array[i]);
   }
   printf("\n");
   if (size <= 1) {
-    depth--;
     return;
   }
   int size_a = size/2;
   int size_b = size - size_a;
+  depth++;
   merge_sort(array, size_a);
   merge_sort((array + size_a), size_b);
+  depth--;
   merge(array, size);
-  for (int i = 0; i < depth - 1; i++) {
-    printf("  ");
-  }
+  printSpaces((depth - 1) * 2);
   printf("out: ");
   for (int i = 0; i < size; i++) {
     printf("%d, ", array[i]);
   }
   printf("\n");
-  depth--;
 }
 
 int main() {
