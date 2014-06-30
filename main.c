@@ -1,8 +1,8 @@
 #include <stdio.h>
-// #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #define BUFFER_SIZE 1000
-#define STR_BUFFER_SIZE 1000
+#define STR_BUFFER_SIZE 10000
 
 // ********************
 //      デバッグ用
@@ -109,17 +109,24 @@ int main() {
   FILE * fp = fopen("problem.txt", "r");
   int array[BUFFER_SIZE];
   char string[STR_BUFFER_SIZE];
-
-  while (fgets(string, BUFFER_SIZE, fp)) {
+  double t_total = 0;
+  clock_t c_start, c_stop;
+  while (fgets(string, STR_BUFFER_SIZE, fp)) {
     int size = readArray(array, string);
 
     // printf("in:  ");
     // printArray(array, size);
+    // printf("size: %d\n", size);
     // printf("====================\n");
+    c_start = clock();
     merge_sort(array, size);
-    printf("out: ");
-    printArray(array, size);
+    c_stop = clock();
+    t_total += (double) (c_stop - c_start) / CLOCKS_PER_SEC;
+    // printf("out: ");
+    // printArray(array, size);
   }
+
+  printf("total: %f\n", t_total);
 
   return 0;
 }
