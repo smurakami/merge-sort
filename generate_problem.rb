@@ -1,5 +1,5 @@
 num = 10
-size = 10
+size = 40
 f = open("problem.txt", "w")
 
 num.times do

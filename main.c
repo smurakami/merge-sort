@@ -1,8 +1,8 @@
 #include <stdio.h>
 // #include <string.h>
 #include <stdlib.h>
-#define BUFFER_SIZE 100
-#define STR_BUFFER_SIZE 100
+#define BUFFER_SIZE 1000
+#define STR_BUFFER_SIZE 1000
 
 // ********************
 //      デバッグ用
@@ -80,9 +80,9 @@ void merge(int * array, int size){
 int depth;
 
 void merge_sort(int * array, int size){
-  printSpaces((depth) * 2);
-  printf("in:  ");
-  printArray(array, size);
+  // printSpaces((depth) * 2);
+  // printf("in:  ");
+  // printArray(array, size);
 
   if (size == 1) {
     return;
@@ -99,9 +99,9 @@ void merge_sort(int * array, int size){
 
   merge(array, size);
 
-  printSpaces(depth * 2);
-  printf("out: ");
-  printArray(array, size);
+  // printSpaces(depth * 2);
+  // printf("out: ");
+  // printArray(array, size);
 }
 
 int main() {
@@ -115,10 +115,10 @@ int main() {
 
     // printf("in:  ");
     // printArray(array, size);
-    printf("====================\n");
+    // printf("====================\n");
     merge_sort(array, size);
-    // printf("out: ");
-    // printArray(array, size);
+    printf("out: ");
+    printArray(array, size);
   }
 
   return 0;
