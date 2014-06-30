@@ -67,7 +67,7 @@ void merge_sort(int * array, int size){
   printf("in: ");
   printArray(array, size);
 
-  if (size <= 1) {
+  if (size == 1) {
     return;
   }
   int size_a = size/2;
