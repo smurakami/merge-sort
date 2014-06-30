@@ -78,17 +78,25 @@ public class Main {
 
   public static void main (String[] args){
     try {
-      FileInputStream   stream = new FileInputStream("./problem.txt");
+      FileInputStream   stream = new FileInputStream("../problem.txt");
       InputStreamReader streamReader = new InputStreamReader(stream);
       BufferedReader    reader = new BufferedReader(streamReader);
 
       String line;
+
+      long totalTime = 0;
+      long t_start;
+      long t_stop;
+
       while((line=reader.readLine()) != null)
       {
         int array[] = readArray(line);
-        // printArray(array);
-        merge_sort(array);
         printArray(array);
+        t_start = System.currentTimeMillis();
+        merge_sort(array);
+        t_stop = System.currentTimeMillis();
+        printArray(array);
+        totalTime += t_stop - t_start;
       }
 
       stream.close();

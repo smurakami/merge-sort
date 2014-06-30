@@ -106,7 +106,7 @@ void merge_sort(int * array, int size){
 
 int main() {
 
-  FILE * fp = fopen("problem.txt", "r");
+  FILE * fp = fopen("../problem.txt", "r");
   int array[BUFFER_SIZE];
   char string[STR_BUFFER_SIZE];
   double t_total = 0;
