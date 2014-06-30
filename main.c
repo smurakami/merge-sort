@@ -64,7 +64,7 @@ int depth;
 
 void merge_sort(int * array, int size){
   printSpaces((depth) * 2);
-  printf("in: ");
+  printf("in:  ");
   printArray(array, size);
 
   if (size == 1) {
@@ -72,10 +72,14 @@ void merge_sort(int * array, int size){
   }
   int size_a = size/2;
   int size_b = size - size_a;
+  int * array_a = array;
+  int * array_b = array + size_a;
+
   depth++;
-  merge_sort(array, size_a);
-  merge_sort((array + size_a), size_b);
+  merge_sort(array_a, size_a);
+  merge_sort(array_b, size_b);
   depth--;
+
   merge(array, size);
 
   printSpaces(depth * 2);
@@ -85,11 +89,5 @@ void merge_sort(int * array, int size){
 
 int main() {
   merge_sort(gArray, BUFFER_SIZE);
-  for (int i = 0; i < BUFFER_SIZE; i++) {
-    printf("%d, ", gArray[i]);
-  }
-
-  printf("\n");
-
   return 0;
 }
