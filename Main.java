@@ -1,6 +1,15 @@
 public class Main {
 
-  public static int gArray[] = {6, 2, 7, 1, 9, 8, 0, 5, 3, 4};
+  public static String gString = "6 2 7 1 9 8 0 5 3 4";
+
+  public static int[] readArray(String s) {
+    String sArray[] = s.split(" ");
+    int array[] = new int[sArray.length];
+    for (int i = 0; i < array.length; i++) {
+      array[i] = Integer.parseInt(sArray[i]);
+    }
+    return array;
+  }
 
   public static void printArray(int array[]) {
     for (int i = 0; i < array.length; i++) {
@@ -65,10 +74,10 @@ public class Main {
   }
 
   public static void main (String[] args){
-    // System.out.println("Hello World!");
-    printArray(gArray);
-    merge_sort(gArray);
-    printArray(gArray);
+    int array[] = readArray(gString);
+    printArray(array);
+    merge_sort(array);
+    printArray(array);
   }
 }
 
