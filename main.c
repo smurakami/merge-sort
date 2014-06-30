@@ -2,6 +2,7 @@
 // #include <string.h>
 #include <stdlib.h>
 #define BUFFER_SIZE 100
+#define STR_BUFFER_SIZE 100
 
 // ********************
 //      デバッグ用
@@ -23,9 +24,7 @@ void printArray(int * array, int size){
 //     Read Array
 // ********************
 
-char * gString = "4 5 1 6 7 3 8 2 0 9";
-
-int readArray(char * string, int * array){
+int readArray(int * array, char * string){
   char buffer[100]; // 100桁の数字までいける
   int buffer_i = 0;
   int array_i = 0;
@@ -106,14 +105,20 @@ void merge_sort(int * array, int size){
 }
 
 int main() {
-  int array[BUFFER_SIZE];
-  int size = readArray(gString, array);
 
-  printf("in:  ");
-  printArray(array, size);
-  merge_sort(array, size);
-  printf("out: ");
-  printArray(array, size);
+  FILE * fp = fopen("problem.txt", "r");
+  int array[BUFFER_SIZE];
+  char string[STR_BUFFER_SIZE];
+
+  while (fgets(string, BUFFER_SIZE, fp)) {
+    int size = readArray(array, string);
+
+    printf("in:  ");
+    printArray(array, size);
+    merge_sort(array, size);
+    printf("out: ");
+    printArray(array, size);
+  }
 
   return 0;
 }
