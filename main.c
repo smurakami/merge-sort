@@ -10,6 +10,13 @@ void printSpaces(int num) {
   }
 }
 
+void printArray(int * array, int size){
+  for (int i = 0; i < size; i++){
+    printf("%d ", array[i]);
+  }
+  putchar('\n');
+}
+
 int gArray[BUFFER_SIZE] = {
   4,
   5,
@@ -68,10 +75,7 @@ int depth;
 void merge_sort(int * array, int size){
   printSpaces((depth) * 2);
   printf("in: ");
-  for (int i = 0; i < size; i++) {
-    printf("%d, ", array[i]);
-  }
-  printf("\n");
+  printArray(array, size);
   if (size <= 1) {
     return;
   }
@@ -84,10 +88,7 @@ void merge_sort(int * array, int size){
   merge(array, size);
   printSpaces((depth - 1) * 2);
   printf("out: ");
-  for (int i = 0; i < size; i++) {
-    printf("%d, ", array[i]);
-  }
-  printf("\n");
+  printArray(array, size);
 }
 
 int main() {
