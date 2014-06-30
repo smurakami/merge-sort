@@ -63,7 +63,7 @@ void merge(int * array, int size){
   for(int i = 0; i < size; i++){
     int a = array_a[i_a];
     int b = array_b[i_b];
-    if ((i_a < size_a) && (a < b)) {
+    if ((i_b >= size_b) || ((i_a < size_a) && (a < b))) {
       buffer[i] = a;
       i_a++;
     } else {
@@ -80,9 +80,9 @@ void merge(int * array, int size){
 int depth;
 
 void merge_sort(int * array, int size){
-  // printSpaces((depth) * 2);
-  // printf("in:  ");
-  // printArray(array, size);
+  printSpaces((depth) * 2);
+  printf("in:  ");
+  printArray(array, size);
 
   if (size == 1) {
     return;
@@ -99,9 +99,9 @@ void merge_sort(int * array, int size){
 
   merge(array, size);
 
-  // printSpaces(depth * 2);
-  // printf("out: ");
-  // printArray(array, size);
+  printSpaces(depth * 2);
+  printf("out: ");
+  printArray(array, size);
 }
 
 int main() {
@@ -113,11 +113,12 @@ int main() {
   while (fgets(string, BUFFER_SIZE, fp)) {
     int size = readArray(array, string);
 
-    printf("in:  ");
-    printArray(array, size);
+    // printf("in:  ");
+    // printArray(array, size);
+    printf("====================\n");
     merge_sort(array, size);
-    printf("out: ");
-    printArray(array, size);
+    // printf("out: ");
+    // printArray(array, size);
   }
 
   return 0;
