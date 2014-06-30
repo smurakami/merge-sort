@@ -52,7 +52,7 @@ int readArray(int * array, char * string){
 // ********************
 
 void merge(int * array, int size){
-  int buffer[BUFFER_SIZE];
+  int buffer[size];
   int size_a = size/2;
   int size_b = size - size_a;
   int * array_a = array;
