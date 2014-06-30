@@ -1,6 +1,15 @@
 #include <stdio.h>
 #define BUFFER_SIZE 10
 
+// ********************
+//      デバッグ用
+// ********************
+void printSpaces(int num) {
+  for (int i = 0; i < num; i++){
+    putchar(' ');
+  }
+}
+
 int gArray[BUFFER_SIZE] = {
   4,
   5,
@@ -58,9 +67,7 @@ int depth;
 
 void merge_sort(int * array, int size){
   depth++;
-  for (int i = 0; i < depth - 1; i++) {
-    printf("  ");
-  }
+  printSpaces((depth - 1) * 2);
   printf("in: ");
   for (int i = 0; i < size; i++) {
     printf("%d, ", array[i]);
@@ -72,10 +79,6 @@ void merge_sort(int * array, int size){
   }
   int size_a = size/2;
   int size_b = size - size_a;
-  // printf("size_a = %d\n", size_a);
-  // printf("size_b = %d\n", size_b);
-  // printf("array[0] = %d\n", array[0]);
-  // printf("(array+size_a)[0] = %d\n", (array+size_a)[0]);
   merge_sort(array, size_a);
   merge_sort((array + size_a), size_b);
   merge(array, size);
