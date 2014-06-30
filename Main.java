@@ -1,3 +1,6 @@
+// import java.util.*;
+import java.io.*;
+
 public class Main {
 
   public static String gString = "6 2 7 1 9 8 0 5 3 4";
@@ -74,10 +77,27 @@ public class Main {
   }
 
   public static void main (String[] args){
-    int array[] = readArray(gString);
-    printArray(array);
-    merge_sort(array);
-    printArray(array);
+    try {
+      FileInputStream   stream = new FileInputStream("./problem.txt");
+      InputStreamReader streamReader = new InputStreamReader(stream);
+      BufferedReader    reader = new BufferedReader(streamReader);
+
+      String line;
+      while((line=reader.readLine()) != null)
+      {
+        int array[] = readArray(line);
+        // printArray(array);
+        merge_sort(array);
+        printArray(array);
+      }
+
+      stream.close();
+      streamReader.close();
+      reader.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
   }
 }
 
