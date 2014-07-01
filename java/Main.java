@@ -77,26 +77,21 @@ public class Main {
   }
 
   public static void main (String[] args){
+    final int PLOBLEM_NUM = 10;
+    final int LOOP_NUM = 1000;
+    int array[][] = new int[PLOBLEM_NUM][];
+    int num = 0;
+
     try {
       FileInputStream   stream = new FileInputStream("../problem.txt");
       InputStreamReader streamReader = new InputStreamReader(stream);
       BufferedReader    reader = new BufferedReader(streamReader);
 
       String line;
-
-      long totalTime = 0;
-      long t_start;
-      long t_stop;
-
       while((line=reader.readLine()) != null)
       {
-        int array[] = readArray(line);
-        printArray(array);
-        t_start = System.currentTimeMillis();
-        merge_sort(array);
-        t_stop = System.currentTimeMillis();
-        printArray(array);
-        totalTime += t_stop - t_start;
+        array[num] = readArray(line);
+        num++;
       }
 
       stream.close();
@@ -106,6 +101,21 @@ public class Main {
       e.printStackTrace();
     }
 
+    long totalTime = 0;
+    long t_start;
+    long t_stop;
+    t_start = System.currentTimeMillis();
+    for (int loop = 0; loop < LOOP_NUM; loop++){
+      for (int i = 0; i < num; i++){
+        // printArray(array);
+        merge_sort(array[i]);
+        // printArray(array);
+      }
+    }
+    t_stop = System.currentTimeMillis();
+    totalTime = t_stop - t_start;
+
+    System.out.println(totalTime / 1000.0);
   }
 }
 

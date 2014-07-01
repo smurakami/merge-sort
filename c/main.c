@@ -4,6 +4,9 @@
 #define BUFFER_SIZE 1000
 #define STR_BUFFER_SIZE 10000
 
+#define PROBLEM_NUM 10
+#define LOOP_NUM 1000
+
 // ********************
 //      デバッグ用
 // ********************
@@ -105,26 +108,33 @@ void merge_sort(int * array, int size){
 }
 
 int main() {
-
   FILE * fp = fopen("../problem.txt", "r");
-  int array[BUFFER_SIZE];
+  int array[PROBLEM_NUM][BUFFER_SIZE];
+  int size[PROBLEM_NUM];
   char string[STR_BUFFER_SIZE];
   double t_total = 0;
   clock_t c_start, c_stop;
+  int num = 0;
   while (fgets(string, STR_BUFFER_SIZE, fp)) {
-    int size = readArray(array, string);
+    size[num] = readArray(array[num], string);
 
-    // printf("in:  ");
-    // printArray(array, size);
-    // printf("size: %d\n", size);
-    // printf("====================\n");
-    c_start = clock();
-    merge_sort(array, size);
-    c_stop = clock();
-    t_total += (double) (c_stop - c_start) / CLOCKS_PER_SEC;
-    // printf("out: ");
-    // printArray(array, size);
+    num++;
   }
+
+  c_start = clock();
+  for (int loop = 0; loop < LOOP_NUM; loop++){
+    for (int i = 0; i < num; i++) {
+      // printf("in:  ");
+      // printArray(array, size);
+      // printf("size: %d\n", size);
+      // printf("====================\n");
+      merge_sort(array[i], size[i]);
+      // printf("out: ");
+      // printArray(array, size);
+    }
+  }
+  c_stop = clock();
+  t_total = (double) (c_stop - c_start) / CLOCKS_PER_SEC;
 
   printf("total: %f\n", t_total);
 
